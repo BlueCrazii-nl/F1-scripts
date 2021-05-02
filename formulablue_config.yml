@@ -1,0 +1,6 @@
+f1_username: [REDACTED]
+f1_password: [REDACTED]
+rtmp_ingest: 192.168.1.40/ingest #IP of NGINX Ingest
+ned_key: F1NL
+eng_key: F1ENG
+ffmpeg_command: ffmpeg -re -i "{source_url}" -surfaces 2 -c:a aac -ac 2 -b:a 128k -c:v h264_nvenc -pix_fmt yuv420p -b:v 8000k -bufsize 3000k -s 1920x1080 -filter:v fps=50 -map 0:v:5 -map 0:m:language:{lang} -s 1920x1080 -f flv rtmp://{ingest}/{key}
