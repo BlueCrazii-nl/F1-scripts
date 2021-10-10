@@ -6,17 +6,16 @@ network:
   version: 2
   ethernets:
     eth0:
-      gateway4: 192.168.1.1
-      addresses: [192.168.1.$1/24]
+      gateway4: 10.10.0.1
+      addresses: [10.10.4.$1/16]
       nameservers:
-        search: []
-        addresses: [1.1.1.1, 1.0.0.1]
+        addresses: [10.10.0.1]
 EOT
 
 netplan apply
 
 export DEBIAN_FRONTEND=noninteractive
-apt-get update -y && apt-get install -y \
+apt update -y && apt-get install -y \
     ffmpeg \
     build-essential \
     git \
@@ -30,6 +29,11 @@ cd /opt/nvidia
 wget https://us.download.nvidia.com/XFree86/Linux-x86_64/455.28/NVIDIA-Linux-x86_64-455.28.run
 chmod +x NVIDIA-Linux-x86_64-455.28.run
 ./NVIDIA-Linux-x86_64-455.28.run --no-kernel-module --disable-nouveau --ui=none --no-questions
+
+git clone https://github.com/keylase/nvidia-patch.git /opt/nvidia-patch/
+cd /opt//nvidia-patch
+chmod +x patch.sh
+./patch.sh
 
 mkdir -p /opt/nginx-rtmp
 cd /opt/nginx-rtmp
