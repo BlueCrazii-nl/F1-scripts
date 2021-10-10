@@ -22,3 +22,15 @@ ffmpeg -i rtmp://127.0.0.1/transcodes/$1 -surfaces 2 -c:a aac -ac 2 -b:a 128k -c
 
 # ENG 1080p
 ffmpeg -i rtmp://127.0.0.1/transcodes/$1 -surfaces 2 -c:a aac -ac 2 -b:a 128k -c:v h264_nvenc -pix_fmt yuv420p -profile:v baseline -tune zerolatency -vsync cfr -x264-params "nal-hrd=cbr" -b:v 6000k -bufsize 10000k -s 1920x1080 -f flv rtmp://ingest.bluecrazii.nl/hlsingest/F1ENG_1080
+
+# DATA 360p
+ffmpeg -i rtmp://127.0.0.1/transcodes/$1 -surfaces 2 -c:a aac -ac 2 -b:a 128k -c:v h264_nvenc -pix_fmt yuv420p -profile:v baseline -tune zerolatency -vsync cfr -x264-params "nal-hrd=cbr" -b:v 1000K -minrate 1000K -maxrate 1000K -bufsize 5000k -s 640x360 -f flv rtmp://ingest.bluecrazii.nl/hlsingest/F1DATA_360
+
+# DATA 480p
+ffmpeg -i rtmp://127.0.0.1/transcodes/$1 -surfaces 2 -c:a aac -ac 2 -b:a 128k -c:v h264_nvenc -pix_fmt yuv420p -profile:v baseline -tune zerolatency -vsync cfr -x264-params "nal-hrd=cbr" -b:v 2500k -minrate 2500K -maxrate 2500K -bufsize 3000k -s 854x480 -f flv rtmp://ingest.bluecrazii.nl/hlsingest/F1DATA_480
+
+# DATA 720p
+ffmpeg -i rtmp://127.0.0.1/transcodes/$1 -surfaces 2 -c:a aac -ac 2 -b:a 128k -c:v h264_nvenc -pix_fmt yuv420p -profile:v baseline -tune zerolatency -vsync cfr -x264-params "nal-hrd=cbr" -b:v 4500k -minrate 4500k -maxrate 4500K -bufsize 3000k -s 1280x720 -f flv rtmp://ingest.bluecrazii.nl/hlsingest/F1DATA_720
+
+# DATA 1080p
+ffmpeg -i rtmp://127.0.0.1/transcodes/$1 -surfaces 2 -c:a aac -ac 2 -b:a 128k -c:v h264_nvenc -pix_fmt yuv420p -profile:v baseline -tune zerolatency -vsync cfr -x264-params "nal-hrd=cbr" -b:v 6000k -bufsize 10000k -s 1920x1080 -f flv rtmp://ingest.bluecrazii.nl/hlsingest/F1DATA_1080
